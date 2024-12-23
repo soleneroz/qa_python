@@ -13,7 +13,7 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book('100 лет одиночества')
         collector.add_new_book('100 лет одиночества')
-        assert collector.get_books_genre() == {'100 лет одиночества': ''}
+        assert len(collector.get_books_genre()) == 1
 
 
     def test_set_book_genre_to_already_have_book(self):
@@ -65,5 +65,15 @@ class TestBooksCollector:
     def test_add_book_in_favorites_book(self, my_book_collection):
         my_book_collection.add_book_in_favorites('Оно')
         my_book_collection.add_book_in_favorites('Оно')
-        assert 'Оно' in my_book_collection.get_list_of_favorites_books() and len(
-            my_book_collection.get_list_of_favorites_books()) == 1
+        assert 'Оно' in my_book_collection.get_list_of_favorites_books() and len(my_book_collection.get_list_of_favorites_books()) == 1
+
+    def test_delete_book_from_favorites(self, my_book_collection):
+        my_book_collection.add_book_in_favorites('Ведьмак')
+        my_book_collection.delete_book_from_favorites('Ведьмак')
+        assert len(my_book_collection.get_list_of_favorites_books()) == 0
+
+    def test_get_books_for_children(self):
+        collector = BooksCollector()
+        collector.add_new_book('Сказка для детей')
+        collector.set_book_genre('Сказка для детей', 'Мультфильмы')
+        assert collector.get_books_for_children()

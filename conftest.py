@@ -4,8 +4,8 @@ from main import BooksCollector
 @pytest.fixture
 def my_book_collection(book_collection):
     collection = book_collection
-    books = ['100 лет одиночества', 'Ведьмак', 'Капоте', 'Джедайские техники', 'Оно']
-    genre = ['Драма', 'Ужасы', 'Фантастика', 'Обучающее', 'Детектив']
+    books = ['100 лет одиночества', 'Ведьмак', 'Капоте', 'Сказка для детей', 'Оно']
+    genre = ['Драма', 'Ужасы', 'Фантастика', 'Детектив', 'Мультфильмы']
     for i in range(5):
         collection.add_new_book(books[i])
     for i in range(5):
